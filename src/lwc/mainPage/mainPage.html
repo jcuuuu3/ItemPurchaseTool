@@ -1,0 +1,33 @@
+<template>
+    <div class="outer-container">
+        <div class="main-wrapper">
+
+            <header class="header-box">
+                <div class="item">
+                    <lightning-button
+                            label="Create Item"
+                            variant="neutral"
+                            onclick={handleCreateItemClick}>
+                    </lightning-button>
+                </div>
+                <div class="item">{accountName}</div>
+                <div class="item">{accountIndustry}</div>
+                <div class="item">{recordId}</div>
+                <div class="item">
+                    <lightning-button
+                            label="Cart"
+                            variant="neutral"
+                            onclick={handleCartClick}>
+                    </lightning-button>
+                </div>
+            </header>
+
+            <div class="content-box">
+                <div class="top-left">Search</div>
+                <div class="bottom-left">Items</div>
+                <div class="right-panel">Filters</div>
+            </div>
+
+        </div>
+    </div>
+</template>
