@@ -1,0 +1,46 @@
+<template>
+    <lightning-modal-header label="Add New Item"></lightning-modal-header>
+
+    <lightning-modal-body>
+        <lightning-record-edit-form
+                object-api-name="Item__c"
+                onsuccess={handleSuccess}
+                onerror={handleError}>
+
+            <div class="modal-content">
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-size_1-of-1">
+                        <lightning-input-field field-name="Name"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                        <lightning-input-field field-name="Description__c"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name="Type__c"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-input-field field-name="Family__c"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                        <lightning-input-field field-name="Image_Url__c"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                        <lightning-input-field field-name="Price__c"></lightning-input-field>
+                    </div>
+                </div>
+
+                <button type="submit" class="slds-hide" data-id="submit-btn"></button>
+            </div>
+        </lightning-record-edit-form>
+    </lightning-modal-body>
+
+    <lightning-modal-footer>
+        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+        <lightning-button
+                label="Create Item"
+                variant="brand"
+                onclick={triggerSubmit}
+                class="slds-p-left_x-small">
+        </lightning-button>
+    </lightning-modal-footer>
+</template>

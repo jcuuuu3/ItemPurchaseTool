@@ -1,6 +1,7 @@
 import { LightningElement, wire } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 import getAccountInfo from '@salesforce/apex/MainPageController.getAccountInfo';
+import CreateItemModal from "c/createItemModal";
 
 export default class ItemPurchaseTool extends LightningElement {
     recordId;
@@ -23,5 +24,12 @@ export default class ItemPurchaseTool extends LightningElement {
             this.accountName = "Error";
             console.error('Error fetching account info', error);
         }
+    }
+
+    async handleCreateItemClick() {
+        const result = await CreateItemModal.open({
+            size: 'medium',
+            description: 'Modal to create a new Item__c record'
+        });
     }
 }
