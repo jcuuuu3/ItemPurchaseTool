@@ -1,4 +1,4 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track} from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 import getAccountInfo from '@salesforce/apex/MainPageController.getAccountInfo';
 import CreateItemModal from "c/createItemModal";
@@ -9,6 +9,8 @@ export default class ItemPurchaseTool extends LightningElement {
     accountName;
     accountNumber;
     accountIndustry;
+    @track filterType;
+    @track filterFamily;
 
     @wire(CurrentPageReference)
     getStateParameters(pageRef) {
@@ -32,5 +34,10 @@ export default class ItemPurchaseTool extends LightningElement {
             size: 'medium',
             description: 'Modal to create a new Item__c record'
         });
+    }
+
+    handleFilterUpdate(event) {
+        this.filterType = event.detail.TYPE;
+        this.filterFamily = event.detail.FAMILY;
     }
 }

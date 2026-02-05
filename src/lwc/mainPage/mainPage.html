@@ -25,11 +25,15 @@
             <div class="content-box">
                 <div class="top-left">Search</div>
                 <div class="bottom-left">
-                    <c-item-tile-holder>
+                    <c-item-tile-holder filter-type = {filterType} filter-family = {filterFamily}>
 
                     </c-item-tile-holder>
                 </div>
-                <div class="right-panel">Filters</div>
+                <div class="right-panel">
+                    <c-filters onfilterchange={handleFilterUpdate} >
+
+                    </c-filters>
+                </div>
             </div>
 
         </div>

@@ -1,0 +1,22 @@
+<template>
+    <h1 class="slds-text-heading_large slds-text-align_center">Filters:</h1>
+    <div class="slds-p-around_medium">
+        <div class="picklist-container">
+            <lightning-combobox
+                    label="Type"
+                    options={optionsOne}
+                    data-id="filter1"
+                    onchange={handleFilterChange}>
+            </lightning-combobox>
+        </div>
+
+        <div class="picklist-container">
+            <lightning-combobox
+                    label="Family"
+                    options={optionsTwo}
+                    data-id="filter2"
+                    onchange={handleFilterChange}>
+            </lightning-combobox>
+        </div>
+    </div>
+</template>

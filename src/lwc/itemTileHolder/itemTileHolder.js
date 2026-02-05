@@ -1,9 +1,11 @@
-import { LightningElement, track, wire} from 'lwc';
+import { LightningElement, track, wire, api} from 'lwc';
 import getAllItems from '@salesforce/apex/ItemsController.getAllItems';
 export default class ItemTileHolder extends LightningElement {
     @track childItems;
+    @api filterType;
+    @api filterFamily;
 
-    @wire(getAllItems)
+    @wire(getAllItems, { type: '$filterType', family: '$filterFamily' })
     getAllItems({ error, data }) {
         if (data) {
             this.childItems = data;
