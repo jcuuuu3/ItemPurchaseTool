@@ -3,6 +3,7 @@
     height: 100px;
     overflow: hidden;
     display: block;
+    border: 1px black;
 }
 
 .tile-image {

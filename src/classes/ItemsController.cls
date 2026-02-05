@@ -26,10 +26,11 @@ public class ItemsController {
 	}
 
 	@AuraEnabled(cacheable=true)
-	public static List<Item__c> getAllItems(String type, String family) {
-		String t = '%%', f = '%%';
+	public static List<Item__c> getAllItems(String type, String family, String search) {
+		String t = '%%', f = '%%', s = '%%';
 		if(type != ''){t = type;}
 		if(family != ''){f = family;}
+		if(search != ''){s = '%' + search + '%';}
 		try {
 			return [
 					SELECT
@@ -42,6 +43,8 @@ public class ItemsController {
 					FROM Item__c
 					WHERE Type__c LIKE :t
 					AND Family__c LIKE :f
+					AND (Name LIKE :s
+					OR Description__c LIKE :s)
 					WITH SECURITY_ENFORCED
 					ORDER BY CreatedDate DESC
 			];

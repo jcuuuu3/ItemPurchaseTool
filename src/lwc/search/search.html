@@ -1,0 +1,15 @@
+<template>
+    <div class="slds-p-around_medium">
+        <lightning-input
+                name="enter-search"
+                label="Search by Name or Description"
+                type="search"
+                placeholder="Type here..."
+                onchange={handleSearchChange}
+        ></lightning-input>
+
+        <p class="slds-m-top_small">
+            Searching for: <strong>{searchKey}</strong>
+        </p>
+    </div>
+</template>

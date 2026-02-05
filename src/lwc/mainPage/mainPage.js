@@ -11,6 +11,7 @@ export default class ItemPurchaseTool extends LightningElement {
     accountIndustry;
     @track filterType;
     @track filterFamily;
+    @track searchKey;
 
     @wire(CurrentPageReference)
     getStateParameters(pageRef) {
@@ -34,6 +35,10 @@ export default class ItemPurchaseTool extends LightningElement {
             size: 'medium',
             description: 'Modal to create a new Item__c record'
         });
+    }
+
+    handleSearchChange(event){
+        this.searchKey = event.detail.value;
     }
 
     handleFilterUpdate(event) {

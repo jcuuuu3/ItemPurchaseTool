@@ -23,9 +23,10 @@
             </header>
 
             <div class="content-box">
-                <div class="top-left">Search</div>
+                <div class="top-left"><c-search onsearchchange={handleSearchChange} > </c-search>
+                </div>
                 <div class="bottom-left">
-                    <c-item-tile-holder filter-type = {filterType} filter-family = {filterFamily}>
+                    <c-item-tile-holder filter-type = {filterType} filter-family = {filterFamily} search-key = {searchKey}>
 
                     </c-item-tile-holder>
                 </div>
