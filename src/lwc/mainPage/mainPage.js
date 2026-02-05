@@ -2,6 +2,7 @@ import { LightningElement, wire } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 import getAccountInfo from '@salesforce/apex/MainPageController.getAccountInfo';
 import CreateItemModal from "c/createItemModal";
+import getFirstThumbnail from '@salesforce/apex/ItemsController.getFirstThumbnail';
 
 export default class ItemPurchaseTool extends LightningElement {
     recordId;
