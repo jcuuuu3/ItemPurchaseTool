@@ -2,7 +2,8 @@ import { LightningElement, wire, track} from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 import getAccountInfo from '@salesforce/apex/MainPageController.getAccountInfo';
 import CreateItemModal from "c/createItemModal";
-
+import CartModal from 'c/cartModal';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class ItemPurchaseTool extends LightningElement {
     recordId;
@@ -12,6 +13,15 @@ export default class ItemPurchaseTool extends LightningElement {
     @track filterType;
     @track filterFamily;
     @track searchKey;
+    @track cart = [];
+
+    connectedCallback() {
+        localStorage.removeItem('shoppingCart');
+        const savedCart = localStorage.getItem('shoppingCart');
+        if (savedCart) {
+            this.cart = JSON.parse(savedCart);
+        }
+    }
 
     @wire(CurrentPageReference)
     getStateParameters(pageRef) {
@@ -44,5 +54,42 @@ export default class ItemPurchaseTool extends LightningElement {
     handleFilterUpdate(event) {
         this.filterType = event.detail.TYPE;
         this.filterFamily = event.detail.FAMILY;
+    }
+
+    handleAddToCart(event) {
+        const newItem = event.detail;
+
+        const index = this.cart.findIndex(item => item.Id === newItem.Id);
+
+        if (index !== -1) {
+            let tempCart = [...this.cart];
+            tempCart[index].quantity += 1;
+            tempCart[index].totalPrice += tempCart[index].Price__c;
+            this.cart = tempCart;
+        } else {
+            this.cart = [...this.cart, { ...newItem, quantity: 1, totalPrice: newItem.Price__c}];
+        }
+
+        localStorage.setItem('shoppingCart', JSON.stringify(this.cart));
+
+        const r = new ShowToastEvent({
+            title: 'Success!',
+            message: 'Your item was added to the cart.',
+            variant: 'success',
+            mode: 'dismissible'
+        });
+        this.dispatchEvent(r);
+    }
+
+    async handleOpenCart() {
+        const result = await CartModal.open({
+            size: 'medium',
+            description: 'Shopping Cart View',
+            cartItems: this.cart
+        });
+
+        if (result === 'checkout') {
+            console.log('User wants to checkout!');
+        }
     }
 }

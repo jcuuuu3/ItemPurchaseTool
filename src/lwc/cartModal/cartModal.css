@@ -1,0 +1,11 @@
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+}
+
+.slds-item {
+    padding: 0.75rem 0;
+}

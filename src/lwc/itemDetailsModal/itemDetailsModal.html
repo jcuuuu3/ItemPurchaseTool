@@ -1,0 +1,24 @@
+<template>
+    <lightning-modal-header label="Product Information"></lightning-modal-header>
+
+    <lightning-modal-body>
+        <div class="slds-p-around_medium">
+            <dl class="slds-list_horizontal slds-wrap">
+                <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Name">Name:</dt>
+                <dd class="slds-item_detail slds-truncate slds-text-heading_small"><strong>{product.Name}</strong></dd>
+
+                <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Price">Price:</dt>
+                <dd class="slds-item_detail slds-text-color_success"><strong>${product.Price__c}</strong></dd>
+
+                <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Type">Type:</dt>
+                <dd class="slds-item_detail"><strong>{product.Type__c}</strong></dd>
+
+                <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Family">Family:</dt>
+                <dd class="slds-item_detail"><strong>{product.Family__c}</strong></dd>
+
+                <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Description">Description:</dt>
+                <dd class="slds-item_detail slds-cell-wrap"><strong>{product.Description__c}</strong></dd>
+            </dl>
+        </div>
+    </lightning-modal-body>
+</template>

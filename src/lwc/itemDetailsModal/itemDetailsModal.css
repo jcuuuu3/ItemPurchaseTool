@@ -1,0 +1,15 @@
+.slds-item_label {
+    width: 30%;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+.slds-item_detail {
+    width: 70%;
+    margin-bottom: 0.75rem;
+}
+
+.slds-cell-wrap {
+    white-space: normal;
+    word-wrap: break-word;
+}

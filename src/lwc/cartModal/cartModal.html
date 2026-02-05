@@ -1,0 +1,44 @@
+<template>
+    <lightning-modal-header label="Your Shopping Cart"></lightning-modal-header>
+
+    <lightning-modal-body>
+        <div class="slds-p-around_medium">
+            <template lwc:if={cartItems.length}>
+                <ul class="slds-has-dividers_bottom-space">
+                    <template for:each={cartItems} for:item="item">
+                        <li key={item.Id} class="slds-item slds-grid slds-grid_vertical-align-center">
+
+                            <div class="slds-col slds-grow-none slds-m-right_medium">
+                                <img src={item.Image__c}
+                                     alt={item.Name}
+                                     class="cart-item-image" />
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-2">
+                                <p class="slds-text-heading_small">{item.Name}</p>
+                                <p class="slds-text-color_weak">quantity: {item.quantity} × ${item.Price__c}</p>
+                            </div>
+
+                            <div class="slds-col slds-text-align_right">
+                                <p class="slds-text-heading_small">${item.totalPrice}</p>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+
+                <div class="slds-m-top_large slds-text-align_right">
+                    <p class="slds-text-heading_medium">Grand Total: <strong>${grandTotal}</strong></p>
+                </div>
+            </template>
+
+            <template lwc:else>
+                <p class="slds-text-align_center">Your cart is currently empty.</p>
+            </template>
+        </div>
+    </lightning-modal-body>
+
+    <lightning-modal-footer>
+        <lightning-button label="Close" onclick={handleClose}></lightning-button>
+        <lightning-button label="Checkout" variant="brand" onclick={handleCheckout} class="slds-m-left_x-small"></lightning-button>
+    </lightning-modal-footer>
+</template>

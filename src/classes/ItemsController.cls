@@ -39,7 +39,8 @@ public class ItemsController {
 							Description__c,
 							Type__c,
 							Family__c,
-							Image__c
+							Image__c,
+							Price__c
 					FROM Item__c
 					WHERE Type__c LIKE :t
 					AND Family__c LIKE :f

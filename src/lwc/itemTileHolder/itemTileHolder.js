@@ -5,6 +5,7 @@ export default class ItemTileHolder extends LightningElement {
     @api filterType;
     @api filterFamily;
     @api searchKey;
+    @api cartContent;
 
     @wire(getAllItems, { type: '$filterType', family: '$filterFamily', search: '$searchKey'})
     getAllItems({ error, data }) {
@@ -13,6 +14,12 @@ export default class ItemTileHolder extends LightningElement {
         } else if (error) {
             console.error('Error fetching items', error);
         }
+    }
+
+    handleRelay(event) {
+        this.dispatchEvent(new CustomEvent('productadd', {
+            detail: event.detail,
+        }));
     }
 
 }

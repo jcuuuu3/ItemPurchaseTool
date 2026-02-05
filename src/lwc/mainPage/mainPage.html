@@ -10,14 +10,14 @@
                             onclick={handleCreateItemClick}>
                     </lightning-button>
                 </div>
-                <div class="item">{accountName}</div>
-                <div class="item">{accountIndustry}</div>
-                <div class="item">{recordId}</div>
+                <div class="item"><strong>{accountName}</strong></div>
+                <div class="item"><strong>{recordId}</strong></div>
+                <div class="item"><strong>{accountIndustry}</strong></div>
                 <div class="item">
                     <lightning-button
                             label="Cart"
                             variant="neutral"
-                            onclick={handleCartClick}>
+                            onclick={handleOpenCart}>
                     </lightning-button>
                 </div>
             </header>
@@ -26,7 +26,7 @@
                 <div class="top-left"><c-search onsearchchange={handleSearchChange} > </c-search>
                 </div>
                 <div class="bottom-left">
-                    <c-item-tile-holder filter-type = {filterType} filter-family = {filterFamily} search-key = {searchKey}>
+                    <c-item-tile-holder filter-type = {filterType} filter-family = {filterFamily} search-key = {searchKey} cart-content = {cart} onproductadd={handleAddToCart}>
 
                     </c-item-tile-holder>
                 </div>
