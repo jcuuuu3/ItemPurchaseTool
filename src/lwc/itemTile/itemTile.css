@@ -1,0 +1,13 @@
+.image-container {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    display: block;
+}
+
+.tile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
