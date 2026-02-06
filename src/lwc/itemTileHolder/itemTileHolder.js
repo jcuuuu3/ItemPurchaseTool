@@ -18,7 +18,6 @@ export default class ItemTileHolder extends LightningElement {
         } else if (error) {
             console.error('Error fetching items', error);
         }
-
     }
 
     handleRelay(event) {
