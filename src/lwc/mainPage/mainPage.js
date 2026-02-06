@@ -6,8 +6,8 @@ import CartModal from 'c/cartModal';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class ItemPurchaseTool extends LightningElement {
-    recordId;
-    accountName;
+    @track recordId;
+    @track accountName;
     accountNumber;
     accountIndustry;
     @track filterType;
@@ -85,7 +85,9 @@ export default class ItemPurchaseTool extends LightningElement {
         const result = await CartModal.open({
             size: 'medium',
             description: 'Shopping Cart View',
-            cartItems: this.cart
+            cartItems: this.cart,
+            accName: this.accountName,
+            accNumber: this.recordId
         });
 
         if (result === 'checkout') {
