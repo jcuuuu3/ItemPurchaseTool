@@ -26,7 +26,7 @@ public class ItemsController {
 	}
 
 	@AuraEnabled(cacheable=true)
-	public static List<Item__c> getAllItems(String type, String family, String search) {
+	public static List<Item__c> getAllItems(String type, String family, String search, Integer tt) {
 		String t = '%%', f = '%%', s = '%%';
 		if(type != ''){t = type;}
 		if(family != ''){f = family;}

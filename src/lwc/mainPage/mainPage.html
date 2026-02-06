@@ -5,6 +5,7 @@
             <header class="header-box">
                 <div class="item">
                     <lightning-button
+                            lwc:if={isManager}
                             label="Create Item"
                             variant="neutral"
                             onclick={handleCreateItemClick}>
@@ -26,12 +27,13 @@
                 <div class="top-left"><c-search onsearchchange={handleSearchChange} > </c-search>
                 </div>
                 <div class="bottom-left">
-                    <c-item-tile-holder filter-type = {filterType} filter-family = {filterFamily} search-key = {searchKey} cart-content = {cart} onproductadd={handleAddToCart}>
+                    <c-item-tile-holder filter-type = {filterType} filter-family = {filterFamily} search-key = {searchKey}
+                                        cart-content = {cart} onproductadd={handleAddToCart} onitemcountchange={relay} tt = {createItemUpdate}>
 
                     </c-item-tile-holder>
                 </div>
                 <div class="right-panel">
-                    <c-filters onfilterchange={handleFilterUpdate} >
+                    <c-filters onfilterchange={handleFilterUpdate} item-count={cartSize}>
 
                     </c-filters>
                 </div>

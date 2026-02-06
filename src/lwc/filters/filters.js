@@ -1,8 +1,9 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, api} from 'lwc';
 
 export default class Filters extends LightningElement {
     filterOne = '';
     filterTwo = '';
+    @api itemCount;
 
     get optionsOne() {
         return [

@@ -6,14 +6,19 @@ export default class ItemTileHolder extends LightningElement {
     @api filterFamily;
     @api searchKey;
     @api cartContent;
+    @api tt;
 
-    @wire(getAllItems, { type: '$filterType', family: '$filterFamily', search: '$searchKey'})
+    @wire(getAllItems, { type: '$filterType', family: '$filterFamily', search: '$searchKey', tt: '$tt'})
     getAllItems({ error, data }) {
         if (data) {
             this.childItems = data;
+            this.dispatchEvent(new CustomEvent('itemcountchange', {
+                detail: data.length,
+            }));
         } else if (error) {
             console.error('Error fetching items', error);
         }
+
     }
 
     handleRelay(event) {

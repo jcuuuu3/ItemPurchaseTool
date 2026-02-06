@@ -5,6 +5,10 @@ import CreateItemModal from "c/createItemModal";
 import CartModal from 'c/cartModal';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
+import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
+import USER_ID from '@salesforce/user/Id';
+import IS_MANAGER from '@salesforce/schema/User.IsManager__c';
+
 export default class ItemPurchaseTool extends LightningElement {
     @track recordId;
     @track accountName;
@@ -14,12 +18,28 @@ export default class ItemPurchaseTool extends LightningElement {
     @track filterFamily;
     @track searchKey;
     @track cart = [];
+    @track cartSize;
+    @track createItemUpdate = 0;
+    isManager;
 
     connectedCallback() {
-        localStorage.removeItem('shoppingCart');
         const savedCart = localStorage.getItem('shoppingCart');
         if (savedCart) {
             this.cart = JSON.parse(savedCart);
+        }
+    }
+
+    relay(event){
+        this.cartSize = event.detail;
+    }
+
+    @wire(getRecord, { recordId: USER_ID, fields: [IS_MANAGER] })
+    wiredUser({ error, data }) {
+        if (data) {
+            this.isManager = getFieldValue(data, IS_MANAGER);
+            console.log('Success! isManager is:', this.isManager);
+        } else if (error) {
+            console.error('Actual Wire Error:', error);
         }
     }
 
@@ -45,6 +65,7 @@ export default class ItemPurchaseTool extends LightningElement {
             size: 'medium',
             description: 'Modal to create a new Item__c record'
         });
+        this.createItemUpdate++;
     }
 
     handleSearchChange(event){
